@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roar & Release</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom right, #dbeafe, #eff6ff, #f0f9ff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 40rem;
+      text-align: center;
+    }
+
+    /* Landing Page Styles */
+    .landing-page .logo {
+      font-size: 6rem;
+      margin-bottom: 1rem;
+      animation: breathe 3s ease-in-out infinite;
+    }
+    
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .landing-page .title {
+      font-size: 3rem;
+      font-weight: 300;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+    
+    .landing-page .subtitle {
+      font-size: 1.25rem;
+      color: #6b7280;
+      margin-bottom: 0.5rem;
+    }
+    
+    .landing-page .tagline {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      font-style: italic;
+      margin-bottom: 3rem;
+    }
+    
+    .features {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .feature-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .feature-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    
+    .feature-content h3 {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.25rem;
+    }
+    
+    .feature-content p {
+      font-size: 0.875rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+    
+    .cta-section {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .cta-btn {
+      flex: 1;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: white;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+    }
+    
+    .cta-btn:active {
+      transform: translateY(0);
+    }
+    
+    .quick-btn {
+      background: linear-gradient(135deg, #6CACE4, #5A9BD4);
+      box-shadow: 0 4px 6px rgba(108, 172, 228, 0.3);
+    }
+    
+    .quick-btn:hover {
+      box-shadow: 0 6px 12px rgba(108, 172, 228, 0.4);
+    }
+    
+    .deep-btn {
+      background: linear-gradient(135deg, #B9D9EB, #A0C9DD);
+      box-shadow: 0 4px 6px rgba(185, 217, 235, 0.3);
+    }
+    
+    .deep-btn:hover {
+      box-shadow: 0 6px 12px rgba(185, 217, 235, 0.4);
+    }
+    
+    .footer {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      margin-top: 2rem;
+    }
+    
+    .columbia-pride {
+      color: #6CACE4;
+      font-weight: 500;
+    }
+
+    /* Exercise Page Styles */
+    .exercise-page {
+      max-width: 32rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .header .title {
+      font-size: 2.25rem;
+      font-weight: 300;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+    
+    .header .subtitle {
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    
+    .mode-buttons {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+    
+    .mode-btn {
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 300;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .mode-btn.active {
+      background-color: #6CACE4;
+      color: white;
+    }
+    
+    .mode-btn:not(.active) {
+      background-color: white;
+      color: #4b5563;
+    }
+    
+    .visual-container {
+      display: flex;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    
+    .visual-box {
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      position: relative;
+      height: 20rem;
+      width: 56.25%;
+      aspect-ratio: 5/7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    
+    .icon-large {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    
+    .icon-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-left: 1.25rem;
+    }
+    
+    .icon-btn {
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .icon-btn.active {
+      background-color: #6CACE4;
+    }
+    
+    .icon-btn:not(.active) {
+      background-color: white;
+      color: #9ca3af;
+    }
+    
+    .input-box {
+      margin-bottom: 1.5rem;
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #6CACE4;
+      background-color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      color: #374151;
+      font-size: 1rem;
+      outline: none;
+    }
+    
+    .input-field:focus {
+      box-shadow: 0 0 0 2px #6CACE4;
+    }
+    
+    .breathing-display {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .breathing-phase {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .phase-text {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #374151;
+      text-transform: capitalize;
+    }
+    
+    .phase-arrow {
+      font-size: 3rem;
+      font-weight: 300;
+      color: #6CACE4;
+    }
+    
+    .breath-count {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-top: 0.5rem;
+    }
+    
+    .instruction-box {
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 0.5rem;
+      text-align: center;
+    }
+    
+    .instruction-text {
+      color: #4b5563;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+    }
+    
+    .start-btn {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(to right, #6CACE4, #B9D9EB);
+      color: white;
+      font-weight: 300;
+      border: none;
+      cursor: pointer;
+    }
+    
+    .reset-btn {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.5rem;
+      color: #6b7280;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .animating-icon {
+      position: absolute;
+      bottom: 40%;
+      font-size: 48px;
+      transition: transform 4s ease-in-out;
+    }
+    
+    @keyframes vibrate-mini {
+      0%, 100% { transform: scale(1.3) rotate(0deg); }
+      25% { transform: scale(1.3) rotate(8deg); }
+      50% { transform: scale(1.3) rotate(0deg); }
+      75% { transform: scale(1.3) rotate(-8deg); }
+    }
+    
+    @keyframes float-away-mini {
+      0% { opacity: 1; bottom: 40%; }
+      100% { opacity: 0; bottom: 70%; }
+    }
+    
+    .vibrating {
+      animation: vibrate-mini 2s ease-in-out infinite;
+    }
+    
+    .floating {
+      animation: float-away-mini 8s ease-out forwards;
+    }
+    
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      .landing-page .logo { font-size: 4rem; }
+      .landing-page .title { font-size: 2rem; }
+      .landing-page .subtitle { font-size: 1rem; }
+      .features { padding: 1.5rem; }
+      .cta-section { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Landing Page -->
+  <div class="container landing-page" id="landingPage">
+    <div class="logo">🦁</div>
+    <h1 class="title">Roar & Release</h1>
+    <p class="subtitle">Breathing Exercise Platform</p>
+    <p class="tagline">Let your worries drift away</p>
+    
+    <div class="features">
+      <div class="feature-item">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-content">
+          <h3>Quick Release</h3>
+          <p>Box breathing (4-4-4-4) with visual lion guidance. Perfect for rapid stress relief between classes.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <div class="feature-icon">🌊</div>
+        <div class="feature-content">
+          <h3>Deep Release</h3>
+          <p>4-7-8 breathing technique with gentle animations. Ideal for deeper relaxation before exams.</p>
+        </div>
+      </div>
+      
+      <div class="feature-item">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-content">
+          <h3>Personalized Practice</h3>
+          <p>Type your worry or intention, choose your icon, and let the guided breathing help you release.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="cta-section">
+      <button class="cta-btn quick-btn" onclick="startExercise('single')">
+        ⚡ Quick Release
+      </button>
+      <button class="cta-btn deep-btn" onclick="startExercise('breathing')">
+        🌊 Deep Release
+      </button>
+    </div>
+    
+    <div class="footer">
+      Made with 💙 for <span class="columbia-pride">Columbia Students</span><br>
+      Take a breath. You've got this, Lions.
+    </div>
+  </div>
+
+  <!-- Exercise Page -->
+  <div class="container exercise-page hidden" id="exercisePage">
+    <div class="header">
+      <h1 class="title">Release</h1>
+      <p class="subtitle">Let your worries drift away</p>
+    </div>
+
+    <div class="mode-buttons">
+      <button class="mode-btn active" id="quickBtn" onclick="setMode('single')">Quick Release</button>
+      <button class="mode-btn" id="deepBtn" onclick="setMode('breathing')">Deep Release</button>
+    </div>
+
+    <div class="visual-container">
+      <div class="visual-box">
+        <div id="animatingIcon" class="animating-icon hidden"></div>
+        <img id="mainIcon" class="icon-large" src="https://iili.io/BEBYpa9.png" alt="Icon">
+      </div>
+      <div id="iconSelector" class="icon-selector hidden">
+        <button class="icon-btn active" onclick="selectIcon('leaf')">🍃</button>
+        <button class="icon-btn" onclick="selectIcon('flower')">🌸</button>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <input type="text" id="worryInput" class="input-field" placeholder="Type one thing you're ready to pop away">
+    </div>
+
+    <div id="breathingDisplay" class="breathing-display hidden">
+      <div class="breathing-phase">
+        <p class="phase-text" id="phaseText">Inhale</p>
+        <div class="phase-arrow" id="phaseArrow">↓</div>
+      </div>
+      <p class="breath-count" id="breathCount">Breath 1 of 3</p>
+    </div>
+
+    <div class="instruction-box">
+      <div id="instructionContent">
+        <p class="instruction-text" id="instructionText">4 seconds inhale • 4 seconds hold • 4 seconds exhale • 4 seconds hold</p>
+        <button class="start-btn" id="startBtn" onclick="startBreathingExercise()">Start Exercise (3 Breaths)</button>
+      </div>
+      <p class="instruction-text hidden" id="followText">Follow the breathing pattern shown above</p>
+    </div>
+
+    <button class="reset-btn" onclick="goBack()">
+      <span>←</span>
+      <span>Back to Home</span>
+    </button>
+  </div>
+
+  <script>
+    let mode = 'single';
+    let isBreathing = false;
+    let selectedIcon = 'leaf';
+    let currentBreathCount = 0;
+    let breathingInterval = null;
+    
+    const iconEmojis = {
+      leaf: '🍃',
+      flower: '🌸'
+    };
+
+    function startExercise(selectedMode) {
+      document.getElementById('landingPage').classList.add('hidden');
+      document.getElementById('exercisePage').classList.remove('hidden');
+      setMode(selectedMode);
+    }
+
+    function goBack() {
+      if (isBreathing) {
+        stopExercise();
+      }
+      document.getElementById('exercisePage').classList.add('hidden');
+      document.getElementById('landingPage').classList.remove('hidden');
+      document.getElementById('worryInput').value = '';
+    }
+
+    function setMode(newMode) {
+      if (isBreathing) {
+        stopExercise();
+      }
+      
+      mode = newMode;
+      
+      document.getElementById('quickBtn').className = mode === 'single' ? 'mode-btn active' : 'mode-btn';
+      document.getElementById('deepBtn').className = mode === 'breathing' ? 'mode-btn active' : 'mode-btn';
+      
+      document.getElementById('mainIcon').src = mode === 'single' 
+        ? 'https://iili.io/BEBYpa9.png' 
+        : 'https://iili.io/KwG8KIS.png';
+      
+      document.getElementById('worryInput').placeholder = mode === 'single'
+        ? "Type one thing you're ready to pop away (e.g., 'midterms')"
+        : "Type one thing you want to blow your wish (e.g., 'good sleep')";
+      
+      document.getElementById('instructionText').textContent = mode === 'single'
+        ? '4 seconds inhale • 4 seconds hold • 4 seconds exhale • 4 seconds hold'
+        : '4 seconds inhale • 7 seconds hold • 8 seconds exhale';
+      
+      document.getElementById('startBtn').textContent = mode === 'single'
+        ? 'Start Exercise (3 Breaths)'
+        : 'Start Exercise (1 Breath)';
+      
+      document.getElementById('iconSelector').className = mode === 'breathing' && !isBreathing ? 'icon-selector' : 'icon-selector hidden';
+      
+      document.getElementById('breathingDisplay').className = 'breathing-display hidden';
+      document.getElementById('instructionContent').className = '';
+      document.getElementById('followText').className = 'instruction-text hidden';
+      document.getElementById('animatingIcon').className = 'animating-icon hidden';
+    }
+
+    function stopExercise() {
+      if (breathingInterval) {
+        clearTimeout(breathingInterval);
+        breathingInterval = null;
+      }
+      
+      isBreathing = false;
+      currentBreathCount = 0;
+      
+      document.getElementById('worryInput').disabled = false;
+      document.getElementById('breathingDisplay').className = 'breathing-display hidden';
+      document.getElementById('instructionContent').className = '';
+      document.getElementById('followText').className = 'instruction-text hidden';
+      document.getElementById('animatingIcon').className = 'animating-icon hidden';
+      
+      document.getElementById('mainIcon').src = mode === 'single' 
+        ? 'https://iili.io/BEBYpa9.png' 
+        : 'https://iili.io/KwG8KIS.png';
+    }
+
+    function selectIcon(icon) {
+      selectedIcon = icon;
+      const buttons = document.getElementById('iconSelector').getElementsByTagName('button');
+      for (let btn of buttons) {
+        btn.className = 'icon-btn';
+      }
+      event.target.className = 'icon-btn active';
+    }
+
+    function startBreathingExercise() {
+      const worry = document.getElementById('worryInput').value.trim();
+      if (!worry) return;
+      
+      isBreathing = true;
+      currentBreathCount = 0;
+      
+      document.getElementById('iconSelector').className = 'icon-selector hidden';
+      document.getElementById('breathingDisplay').className = 'breathing-display';
+      document.getElementById('instructionContent').className = 'hidden';
+      document.getElementById('followText').className = 'instruction-text';
+      document.getElementById('worryInput').disabled = true;
+      
+      animateBreathingCycle();
+    }
+
+    function animateBreathingCycle() {
+      let phase = 0;
+      const phases = mode === 'single' 
+        ? ['inhale', 'hold', 'exhale', 'hold']
+        : ['inhale', 'hold', 'exhale'];
+      const durations = mode === 'single'
+        ? [4000, 4000, 4000, 4000]
+        : [4000, 7000, 8000];
+      const maxCycles = mode === 'single' ? 3 : 1;
+      
+      const lionImages = {
+        inhale: 'https://iili.io/KwGWUsR.png',
+        hold: 'https://iili.io/KwMxoP4.png',
+        exhale: 'https://iili.io/KwMzMBf.png'
+      };
+
+      function cycle() {
+        const displayPhase = phases[phase];
+        document.getElementById('phaseText').textContent = displayPhase.charAt(0).toUpperCase() + displayPhase.slice(1);
+        
+        const arrowMap = {
+          inhale: '↓',
+          hold: '—',
+          exhale: '↑'
+        };
+        document.getElementById('phaseArrow').textContent = arrowMap[displayPhase];
+        
+        document.getElementById('breathCount').textContent = mode === 'single'
+          ? 'Breath ' + (currentBreathCount + 1) + ' of 3'
+          : 'Breath 1 of 1';
+
+        if (mode === 'single') {
+          document.getElementById('mainIcon').src = lionImages[displayPhase];
+        }
+
+        if (mode === 'breathing') {
+          const iconEl = document.getElementById('animatingIcon');
+          iconEl.textContent = iconEmojis[selectedIcon];
+          iconEl.className = 'animating-icon';
+          
+          if (displayPhase === 'inhale') {
+            iconEl.style.transform = 'scale(1.3)';
+          } else if (displayPhase === 'hold') {
+            iconEl.className = 'animating-icon vibrating';
+            iconEl.style.transform = 'scale(1.3)';
+          } else if (displayPhase === 'exhale') {
+            iconEl.className = 'animating-icon floating';
+          }
+        }
+
+        setTimeout(function() {
+          phase = (phase + 1) % phases.length;
+          
+          if (phase === 0) {
+            currentBreathCount++;
+            if (currentBreathCount >= maxCycles) {
+              finishExercise();
+              return;
+            }
+          }
+          
+          breathingInterval = setTimeout(function() { cycle(); }, 0);
+        }, durations[phase]);
+      }
+
+      cycle();
+    }
+
+    function finishExercise() {
+      isBreathing = false;
+      document.getElementById('worryInput').value = '';
+      document.getElementById('worryInput').disabled = false;
+      document.getElementById('breathingDisplay').className = 'breathing-display hidden';
+      document.getElementById('instructionContent').className = '';
+      document.getElementById('followText').className = 'instruction-text hidden';
+      document.getElementById('animatingIcon').className = 'animating-icon hidden';
+      
+      if (mode === 'breathing') {
+        document.getElementById('iconSelector').className = 'icon-selector';
+      }
+      
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+    }
+  </script>
+</body>
+</html>
